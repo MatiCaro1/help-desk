@@ -1,0 +1,24 @@
+<section>
+    <h1>Tickets</h1>
+
+    @if (cargando()) {
+        <p>Cargando tickets...</p>
+    } @else {
+        @for (ticket of tickets(); track ticket.id) {
+            <mat-card class="ticket-card">
+                <mat-card-header>
+                    <mat-card-title>{{ ticket.asunto }}</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <p>{{ ticket.descripcion }}</p>
+                    <p>{{ ticket.estado }}</p>
+                    <p>{{ ticket.prioridad }}</p>
+                    <p>{{ ticket.fechaCreacion }}</p>
+                </mat-card-content>
+            </mat-card>
+        } @empty {
+            <p>No hay tickets registrados.</p>
+        }
+    }
+</section>

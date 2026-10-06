@@ -1,0 +1,15 @@
+/* Colores y fuentes del proyecto: cambia aquí y se actualiza toda la app */
+:root {
+  --color-primario: #1565c0;
+  --color-texto-sobre-primario: #ffffff;
+  --color-fondo: #f5f7fa;
+  --color-panel: #ffffff;
+  --color-menu: #e8eef6;
+  --color-activo: #d0e0f7;
+  --color-texto: #1f2937;
+  --color-texto-suave: #4b5563;
+
+  --fuente: Roboto, 'Segoe UI', sans-serif;
+  --radio: 12px;
+  --sombra: 0 1px 3px rgba(0, 0, 0, 0.12);
+}

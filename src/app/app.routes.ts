@@ -1,3 +1,38 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
+import { Dashboard } from "./pages/dashboard/dashboard";
+import { Kanban } from "./pages/kanban/kanban";
+import { Tickets } from "./pages/tickets/tickets";
+import { Reportes } from "./pages/reportes/reportes";
+import { Usuarios } from "./pages/usuarios/usuarios";
+import { AcercaDe } from "./pages/acerca-de/acerca-de";
+import { NotFound } from "./pages/not-found/not-found";
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  {
+    path: 'dashboard',
+    component: Dashboard
+  },
+  {
+    path: 'kanban',
+    component: Kanban
+  },
+  {
+    path: 'tickets',
+    component: Tickets
+  },
+  {
+    path: 'reportes',
+    component: Reportes
+  },
+  {
+    path: 'usuarios',
+    component: Usuarios
+  },
+  {
+    path: 'acerca-de',
+    component: AcercaDe,
+  },
+  { path: '**', 
+    component: NotFound },
+];

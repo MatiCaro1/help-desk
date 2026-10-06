@@ -1,0 +1,27 @@
+<section>
+    <h1>Usuarios</h1>
+
+    @if (cargando()) {
+        <p>Cargando usuarios...</p>
+    } @else {
+        <div class="grid-usuarios">
+            @for (usuario of usuarios(); track usuario.id) {
+                <mat-card class="usuario-card">
+                    <mat-card-header>
+                        <mat-icon mat-card-avatar class="avatar">person</mat-icon>
+                        <mat-card-title>{{ usuario.nombre }}</mat-card-title>
+                        <mat-card-subtitle>{{ usuario.email }}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <span [class]="'rol ' + usuario.rol.toLowerCase()">
+                            {{ usuario.rol }}
+                        </span>
+                    </mat-card-content>
+                </mat-card>
+            } @empty {
+                <p>No hay usuarios registrados.</p>
+            }
+        </div>
+    }
+</section>
