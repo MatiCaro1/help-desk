@@ -47,7 +47,31 @@
       "estado": "Abierto",
       "prioridad": "Baja",
       "fechaCreacion": "2026-09-30"
-    }
+    },
+    {
+      "id": 7,
+      "asunto": "Pantalla se apaga",
+      "descripcion": "El monitor externo parpadea cada cierto tiempo.",
+      "estado": "Abierto",
+      "prioridad": "Baja",
+      "fechaCreacion": "2026-10-05"
+    },
+    {
+      "id": 8,
+      "asunto": "Pantalla parpadea",
+      "descripcion": "El monitor externo parpadea cada cierto tiempo.",
+      "estado": "Abierto",
+      "prioridad": "Baja",
+      "fechaCreacion": "2026-10-05"
+    },
+    {
+      "id": 9,
+      "asunto": "Pantalla parpadea",
+      "descripcion": "El monitor externo parpadea cada cierto tiempo.",
+      "estado": "Abierto",
+      "prioridad": "Baja",
+      "fechaCreacion": "2026-10-05"
+    }        
   ],
   "usuarios": [
     {

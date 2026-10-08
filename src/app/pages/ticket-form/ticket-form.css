@@ -1,0 +1,58 @@
+/* Tarjeta blanca centrada que contiene todo el formulario */
+.contenedor {
+  max-width: 640px;
+  margin: 24px auto;
+  padding: 24px;
+  background: var(--color-panel);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+/* Título con ícono */
+.encabezado {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--color-texto);
+}
+
+.encabezado h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* Campos uno debajo del otro */
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estado y Prioridad lado a lado */
+.fila {
+  display: flex;
+  gap: 16px;
+}
+
+.fila mat-form-field {
+  flex: 1;
+}
+
+/* Botones alineados a la derecha */
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Recuadro para ver los datos del formulario mientras pruebas */
+.vista-previa {
+  margin-top: 24px;
+  padding: 12px;
+  background: var(--color-fondo);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+}

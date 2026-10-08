@@ -1,3 +1,9 @@
 .ticket-card {
     margin-bottom: 16px;
 }
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -5,7 +5,8 @@ import { Tickets } from "./pages/tickets/tickets";
 import { Reportes } from "./pages/reportes/reportes";
 import { Usuarios } from "./pages/usuarios/usuarios";
 import { AcercaDe } from "./pages/acerca-de/acerca-de";
-import { NotFound } from "./pages/not-found/not-found";
+import { NotFound } from "./pages/not-found/not-found"
+import { TicketForm } from "./pages/ticket-form/ticket-form";
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: 'tickets',
     component: Tickets
+  },
+  {
+    path: 'tickets/nuevo',
+    component: TicketForm
   },
   {
     path: 'reportes',

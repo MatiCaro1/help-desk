@@ -1,0 +1,50 @@
+<section class="contenedor">
+    <div class="encabezado">
+        <mat-icon>confirmation_number</mat-icon>
+        <h1>Nuevo ticket</h1>
+    </div>
+
+    <form [formGroup]="ticketForm" (ngSubmit)="guardar()" class="formulario">
+        <mat-form-field appearance="outline">
+            <mat-label>Asunto</mat-label>
+            <input matInput formControlName="asunto" placeholder="Ej: No funciona la impresora">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput formControlName="descripcion" rows="4"
+                placeholder="Cuéntanos con detalle qué ocurre"></textarea>
+            <mat-error>La descripción debe tener entre 10 y 500 caracteres</mat-error>
+        </mat-form-field>
+
+        <div class="fila">
+            <mat-form-field appearance="outline">
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="estado">
+                    <mat-option value="Abierto">Abierto</mat-option>
+                    <mat-option value="En proceso">En proceso</mat-option>
+                    <mat-option value="Cerrado">Cerrado</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Prioridad</mat-label>
+                <mat-select formControlName="prioridad">
+                    <mat-option value="Baja">Baja</mat-option>
+                    <mat-option value="Media">Media</mat-option>
+                    <mat-option value="Alta">Alta</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="acciones">
+            <button mat-stroked-button type="reset">Limpiar</button>
+            <button mat-flat-button type="submit" [disabled]="ticketForm.invalid">
+                <mat-icon>send</mat-icon>
+                Guardar
+            </button>
+        </div>
+    </form>
+
+    <pre class="vista-previa">{{ ticketForm.value | json }}</pre>
+</section>
