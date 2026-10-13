@@ -1,23 +1,7 @@
 {
   "tickets": [
     {
-      "id": 1,
-      "asunto": "No puedo iniciar sesión",
-      "descripcion": "Al ingresar mis credenciales aparece el mensaje 'usuario o contraseña incorrectos'.",
-      "estado": "Abierto",
-      "prioridad": "Alta",
-      "fechaCreacion": "2026-09-22"
-    },
-    {
-      "id": 2,
-      "asunto": "Impresora del 2° piso no imprime",
-      "descripcion": "La impresora muestra el documento en cola pero nunca lo imprime.",
-      "estado": "En proceso",
-      "prioridad": "Media",
-      "fechaCreacion": "2026-09-23"
-    },
-    {
-      "id": 3,
+      "id": "3",
       "asunto": "Solicitud de instalación de Office",
       "descripcion": "Necesito Microsoft Office instalado en mi nuevo notebook.",
       "estado": "Cerrado",
@@ -25,7 +9,7 @@
       "fechaCreacion": "2026-09-24"
     },
     {
-      "id": 4,
+      "id": "4",
       "asunto": "Correo no sincroniza en el celular",
       "descripcion": "Desde ayer el correo corporativo no se actualiza en mi teléfono.",
       "estado": "Abierto",
@@ -33,7 +17,7 @@
       "fechaCreacion": "2026-09-26"
     },
     {
-      "id": 5,
+      "id": "5",
       "asunto": "Sin acceso a carpeta compartida",
       "descripcion": "No tengo permisos para abrir la carpeta 'Finanzas' en el servidor.",
       "estado": "En proceso",
@@ -41,7 +25,7 @@
       "fechaCreacion": "2026-09-28"
     },
     {
-      "id": 6,
+      "id": "6",
       "asunto": "Pantalla parpadea",
       "descripcion": "El monitor externo parpadea cada cierto tiempo.",
       "estado": "Abierto",
@@ -49,7 +33,7 @@
       "fechaCreacion": "2026-09-30"
     },
     {
-      "id": 7,
+      "id": "7",
       "asunto": "Pantalla se apaga",
       "descripcion": "El monitor externo parpadea cada cierto tiempo.",
       "estado": "Abierto",
@@ -57,7 +41,7 @@
       "fechaCreacion": "2026-10-05"
     },
     {
-      "id": 8,
+      "id": "8",
       "asunto": "Pantalla parpadea",
       "descripcion": "El monitor externo parpadea cada cierto tiempo.",
       "estado": "Abierto",
@@ -65,44 +49,69 @@
       "fechaCreacion": "2026-10-05"
     },
     {
-      "id": 9,
+      "id": "9",
       "asunto": "Pantalla parpadea",
       "descripcion": "El monitor externo parpadea cada cierto tiempo.",
       "estado": "Abierto",
       "prioridad": "Baja",
       "fechaCreacion": "2026-10-05"
-    }        
+    },
+    {
+      "asunto": "dadasdasasdasd",
+      "descripcion": "dasdasdasd",
+      "estado": "Abierto",
+      "prioridad": "Media",
+      "fechaCreacion": "2026-10-08",
+      "id": "av1aWrWj3kU"
+    },
+    {
+      "asunto": "Prueba de ingreso de ticket",
+      "descripcion": "prueba de un ticket nuevo, ojala no llevan más ticket en la vida",
+      "estado": "Abierto",
+      "prioridad": "Media",
+      "fechaCreacion": "2026-10-08",
+      "id": "GzMF4XPr3XM"
+    },
+    {
+      "asunto": "Ejemplo de ticket",
+      "descripcion": "Ojala no lleguen mas ticket en la vida por Dios! 1 a la semana ",
+      "estado": "Abierto",
+      "prioridad": "Media",
+      "fechaCreacion": "2026-10-08",
+      "id": "Z8jYea6W0vw"
+    }
   ],
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Camila Rojas",
       "email": "camila.rojas@helpdesk.cl",
       "rol": "Administrador"
     },
     {
-      "id": 2,
+      "id": "2",
       "nombre": "Diego Fuentes",
       "email": "diego.fuentes@helpdesk.cl",
       "rol": "Soporte"
     },
     {
-      "id": 3,
+      "id": "3",
       "nombre": "Valentina Soto",
       "email": "valentina.soto@helpdesk.cl",
       "rol": "Soporte"
     },
     {
-      "id": 4,
+      "id": "4",
       "nombre": "Javier Muñoz",
       "email": "javier.munoz@helpdesk.cl",
       "rol": "Usuario"
     },
     {
-      "id": 5,
+      "id": "5",
       "nombre": "Fernanda Castillo",
       "email": "fernanda.castillo@helpdesk.cl",
       "rol": "Usuario"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

@@ -27,6 +27,10 @@ export const routes: Routes = [
     component: TicketForm
   },
   {
+    path: 'tickets/editar/:id',
+    component: TicketForm
+  },
+  {
     path: 'reportes',
     component: Reportes
   },
