@@ -3,7 +3,6 @@ import { Inject, Injectable } from '@angular/core'; // Injectable permite que An
 import { HttpClient } from '@angular/common/http'; // HttpClient sirve para hacer peticiones a la API (GET, POST, PUT, DELETE)
 import { Observable } from 'rxjs'; // Observable representa una respuesta que llega más tarde (asíncrona)
 import { Ticket } from '../models/ticket'; // El modelo que define cómo es un ticket
-import { tick } from '@angular/core/testing';
 
 // Este servicio queda disponible para toda la aplicación
 @Injectable({
