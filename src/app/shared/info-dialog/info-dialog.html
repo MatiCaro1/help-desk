@@ -1,0 +1,28 @@
+<div class="dialogo">
+
+  <div class="icono-circulo">
+    <mat-icon>{{ data.icono ?? 'warning_amber' }}</mat-icon>
+  </div>
+
+  <h2 class="titulo">{{ data.titulo }}</h2>
+
+  <p class="mensaje">{{ data.mensaje }}</p>
+
+  @if (data.mensaje) {
+    <div class="detalle">{{ data.mensaje }}</div>
+  }
+
+  <div class="aviso">
+    <mat-icon>info</mat-icon>
+    <span>Esta acción no se puede deshacer.</span>
+  </div>
+
+  <div class="acciones">
+    <button mat-stroked-button type="button" class="cancelar" (click)="cerrar()">
+      {{ data.textoCerrar ?? 'Cerrar' }}
+    </button>
+
+   
+  </div>
+
+</div>

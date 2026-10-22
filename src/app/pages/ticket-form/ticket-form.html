@@ -3,8 +3,11 @@
         <mat-icon>confirmation_number</mat-icon>
         <h1>Nuevo ticket</h1>
         @if (modoEdicion()) {
-            Editar Ticket
+            <h1>Editar ticket</h1>
+        } @else {
+            <h1>Nuevo ticket</h1>
         }
+
     </div>
 
     <form [formGroup]="ticketForm" (ngSubmit)="guardar()" class="formulario">

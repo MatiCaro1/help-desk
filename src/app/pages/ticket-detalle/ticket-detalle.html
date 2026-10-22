@@ -1,0 +1,48 @@
+<section class="contenedor">
+    <div class="encabezado">
+        <mat-icon>confirmation_number</mat-icon>
+        <h1>Detalle del ticket</h1>
+    </div>
+
+    @if (cargando()) {
+        <p>Cargando ticket...</p>
+    } @else if (error()) {
+        <p>Ocurrió un error al cargar el ticket.</p>
+    } @else if (ticket(); as t) {
+        <dl class="datos">
+            <dt>ID</dt>
+            <dd>{{ t.id }}</dd>
+
+            <dt>Asunto</dt>
+            <dd>{{ t.asunto }}</dd>
+
+            <dt>Descripción</dt>
+            <dd>{{ t.descripcion }}</dd>
+
+            <dt>Estado</dt>
+            <dd>
+                <app-estado-ticket [estado]="t.estado" />
+            </dd>
+
+            <dt>Prioridad</dt>
+            <dd>
+                <app-prioridad-ticket [prioridad]="t.prioridad" />
+            </dd>
+
+
+            <dt>Fecha de creación</dt>
+            <dd>{{ t.fechaCreacion | date: 'dd/MM/yyyy' }}</dd>
+        </dl>
+
+        <div class="acciones">
+            <a mat-stroked-button routerLink="/tickets">
+                <mat-icon>arrow_back</mat-icon>
+                Volver
+            </a>
+            <a mat-flat-button [routerLink]="['/tickets/editar', t.id]" [disabled]="t.estado === 'Cerrado'">
+                <mat-icon>edit</mat-icon>
+                Editar
+            </a>
+        </div>
+    }
+</section>

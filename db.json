@@ -1,28 +1,12 @@
 {
   "tickets": [
     {
-      "id": "3",
-      "asunto": "Solicitud de instalación de Office",
-      "descripcion": "Necesito Microsoft Office instalado en mi nuevo notebook.",
-      "estado": "Cerrado",
-      "prioridad": "Baja",
-      "fechaCreacion": "2026-09-24"
-    },
-    {
-      "id": "4",
-      "asunto": "Correo no sincroniza en el celular",
-      "descripcion": "Desde ayer el correo corporativo no se actualiza en mi teléfono.",
-      "estado": "Abierto",
-      "prioridad": "Media",
-      "fechaCreacion": "2026-09-26"
-    },
-    {
-      "id": "5",
-      "asunto": "Sin acceso a carpeta compartida",
+      "asunto": "Sin acceso a carpeta compartida OJITO",
       "descripcion": "No tengo permisos para abrir la carpeta 'Finanzas' en el servidor.",
-      "estado": "En proceso",
+      "estado": "Cerrado",
       "prioridad": "Alta",
-      "fechaCreacion": "2026-09-28"
+      "fechaCreacion": "2026-09-28",
+      "id": "5"
     },
     {
       "id": "6",
@@ -31,14 +15,6 @@
       "estado": "Abierto",
       "prioridad": "Baja",
       "fechaCreacion": "2026-09-30"
-    },
-    {
-      "id": "7",
-      "asunto": "Pantalla se apaga",
-      "descripcion": "El monitor externo parpadea cada cierto tiempo.",
-      "estado": "Abierto",
-      "prioridad": "Baja",
-      "fechaCreacion": "2026-10-05"
     },
     {
       "id": "8",
@@ -75,31 +51,69 @@
     {
       "asunto": "Ejemplo de ticket",
       "descripcion": "Ojala no lleguen mas ticket en la vida por Dios! 1 a la semana ",
-      "estado": "Abierto",
+      "estado": "En proceso",
       "prioridad": "Media",
       "fechaCreacion": "2026-10-08",
       "id": "Z8jYea6W0vw"
+    },
+    {
+      "asunto": "Solicitud de instalación de Office Testing",
+      "descripcion": "Necesito Microsoft Office instalado en mi nuevo notebook. Testing",
+      "estado": "Cerrado",
+      "prioridad": "Baja",
+      "fechaCreacion": "2026-10-15",
+      "id": "fzZF14nC4Rg"
+    },
+    {
+      "asunto": "Solicitud de instalación de Office ",
+      "descripcion": "Necesito Microsoft Office instalado en mi nuevo notebook.",
+      "estado": "Cerrado",
+      "prioridad": "Baja",
+      "fechaCreacion": "2026-10-15",
+      "id": "6MPj6254Ud4"
+    },
+    {
+      "asunto": "Pantalla parpadea no quiero ver mas ticket en mi vida",
+      "descripcion": "El monitor externo parpadea cada cierto tiempo.",
+      "estado": "Cerrado",
+      "prioridad": "Alta",
+      "fechaCreacion": "2026-10-15",
+      "id": "tLYr4Tla1u0"
+    },
+    {
+      "asunto": "Ejemplo de ticket",
+      "descripcion": "Ojala no lleguen mas ticket en la vida por Dios! 1 a la semana  test",
+      "estado": "Abierto",
+      "prioridad": "Media",
+      "fechaCreacion": "2026-10-15",
+      "id": "7gZi6o72ecU"
+    },
+    {
+      "asunto": "Ejemplo de ticket - test",
+      "descripcion": "Ojala no lleguen mas ticket en la vida por Dios! 1 a la semana  test",
+      "estado": "Abierto",
+      "prioridad": "Media",
+      "fechaCreacion": "2026-10-15",
+      "id": "RmQPV5DCryM"
+    },
+    {
+      "asunto": "Ejemplo de ticket - test -test",
+      "descripcion": "Ojala no lleguen mas ticket en la vida por Dios! 1 a la semana  test",
+      "estado": "Abierto",
+      "prioridad": "Media",
+      "fechaCreacion": "2026-10-15",
+      "id": "phptqrB_fAc"
+    },
+    {
+      "asunto": "testasdasdasd",
+      "descripcion": "testasdasdasdasdasd",
+      "estado": "En proceso",
+      "prioridad": "Alta",
+      "fechaCreacion": "2026-10-22",
+      "id": "5e3Oh-N5NCQ"
     }
   ],
   "usuarios": [
-    {
-      "id": "1",
-      "nombre": "Camila Rojas",
-      "email": "camila.rojas@helpdesk.cl",
-      "rol": "Administrador"
-    },
-    {
-      "id": "2",
-      "nombre": "Diego Fuentes",
-      "email": "diego.fuentes@helpdesk.cl",
-      "rol": "Soporte"
-    },
-    {
-      "id": "3",
-      "nombre": "Valentina Soto",
-      "email": "valentina.soto@helpdesk.cl",
-      "rol": "Soporte"
-    },
     {
       "id": "4",
       "nombre": "Javier Muñoz",

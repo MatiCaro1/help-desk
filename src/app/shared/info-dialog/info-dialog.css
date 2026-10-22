@@ -1,0 +1,90 @@
+.dialogo {
+  padding: 28px 24px 20px;
+  text-align: center;
+}
+
+.icono-circulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background-color: #fee2e2;
+  box-shadow: 0 0 0 8px #fef2f2;
+}
+
+.icono-circulo mat-icon {
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+  color: #dc2626;
+}
+
+.titulo {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.mensaje {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.detalle {
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.aviso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+  color: #b45309;
+  font-size: 13px;
+}
+
+.aviso mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
+
+.acciones {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.acciones button {
+  flex: 1;
+  height: 44px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.cancelar {
+  color: #334155;
+}
+
+.confirmar {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.confirmar:hover {
+  background-color: #b91c1c;
+}

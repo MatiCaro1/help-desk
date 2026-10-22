@@ -4,23 +4,23 @@
 
 .sidebar {
   width: 240px;
-  background: var(--color-menu);
+  background: #f8fafc;
 }
 
 .menu-titulo {
   padding: 1rem 1rem 0.5rem;
   font-weight: 500;
-  color: var(--color-texto-suave);
+  color: #64748b;
 }
 
 .activo {
-  background: var(--color-activo);
+  background: #e2e8f0;
 }
 
 .toolbar {
   gap: 0.5rem;
-  background: var(--color-primario);
-  color: var(--color-texto-sobre-primario);
+  background: #1e3a5f;
+  color: #ffffff;
 }
 
 .content {

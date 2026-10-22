@@ -32,7 +32,7 @@ export class TicketService {
     }
 
     // Actualiza un ticket existente según su id (PUT)
-    actualizarTicket(id: number, ticket: Omit<Ticket, 'id'>):Observable<Ticket>{
+    actualizarTicket(id: string, ticket: Omit<Ticket, 'id'>):Observable<Ticket>{
         return this.http.put<Ticket>(`${this.apiUrl}/${id}`,ticket);
     }
 

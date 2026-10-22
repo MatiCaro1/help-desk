@@ -38,6 +38,8 @@ export class TicketForm implements OnInit{
   errorCargado = signal(false);
 
   ticketId: string | null = null;
+  fechaCreacionOriginal = '';
+
     
   ticketForm = this.fb.group({
     asunto: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
@@ -75,6 +77,7 @@ export class TicketForm implements OnInit{
           estado: ticket.estado,
           prioridad: ticket.prioridad
         })
+        this.fechaCreacionOriginal = ticket.fechaCreacion;
         this.cargando.set(false);
       },
 
@@ -97,29 +100,34 @@ export class TicketForm implements OnInit{
 
     const valores = this.ticketForm.getRawValue();
 
-    const nuevoTicket: Omit<Ticket, 'id'> = {
+        // Armamos el ticket con los datos del formulario
+    const datosTicket: Omit<Ticket, 'id'> = {
       asunto: valores.asunto ?? '',
       descripcion: valores.descripcion ?? '',
       estado: valores.estado ?? 'Abierto',
       prioridad: valores.prioridad ?? 'Media',
-      fechaCreacion: new Date().toISOString().split('T')[0],
+      // Si estamos editando usamos la fecha original; si es nuevo, la de hoy
+      fechaCreacion: this.modoEdicion()
+        ? this.fechaCreacionOriginal
+        : new Date().toISOString().split('T')[0],
     };
 
-    this.ticketService.crearTicket(nuevoTicket).subscribe({
-      next: ()=>{
+    // Elegimos qué petición hacer según el modo
+    const peticion = this.modoEdicion() && this.ticketId
+      ? this.ticketService.actualizarTicket(this.ticketId, datosTicket)
+      : this.ticketService.crearTicket(datosTicket);
+
+    peticion.subscribe({
+      next: () => {
         this.guardando.set(false);
         this.router.navigate(['/tickets']);
       },
-
       error: (error) => {
-        console.error('Error al crear el ticket: ', error);
+        console.error('Error al guardar el ticket: ', error);
         this.errorGuardando.set(true);
         this.guardando.set(false);
       }
-
-
-    })
-
-    
+    });
   }
+
 }

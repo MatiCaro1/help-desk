@@ -5,9 +5,14 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { Ticket } from '../../models/ticket';
 import { TicketService } from '../../services/tickets';
 import { RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatDialog } from '@angular/material/dialog';
+import { EstadoTicket } from '../../shared/estado-ticket/estado-ticket';
+import { PrioridadTicket } from '../../shared/prioridad-ticket/prioridad-ticket';
+import { AccionesTicket } from '../../shared/acciones-ticket/acciones-ticket';
+import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
+import { InfoDialog } from '../../shared/info-dialog/info-dialog';
+ 
 @Component({
   selector: 'app-tickets',
   imports: [
@@ -15,15 +20,18 @@ import { MatIconModule } from '@angular/material/icon';
     MatPaginatorModule,
     DatePipe,
     RouterLink,
-    MatButtonModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    EstadoTicket,
+    PrioridadTicket,
+    AccionesTicket,
+],
   templateUrl: './tickets.html',
   styleUrl: './tickets.css'
 })
 export class Tickets implements OnInit {
  
   private ticketService = inject(TicketService);
+  private dialog = inject(MatDialog);
  
   columnas: string[] = [
     'id',
@@ -70,12 +78,30 @@ export class Tickets implements OnInit {
   }
  
   eliminar(ticket: Ticket): void {
-    const confirmado = confirm(`¿Está seguro de elimiant el ticket ${ticket.asunto}?`);
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '430px',
+      maxWidth: '95vw',
+      disableClose: true,
+      data: {
+        titulo: 'Eliminar ticket',
+        mensaje: '¿Está seguro que desea eliminar el ticket?',
+        icono: 'ticket_remove',
+        textoConfirmar: 'Eliminar',
+        textoCancelar: 'Cancelar'
+      }
+    })
  
-    if (!confirmado) {
-      return;
-    }
+    dialogRef.afterClosed().subscribe(
+      resultado => {
+        if (resultado !== true) {
+          return;
+        }
  
+        this.eliminarTicket(ticket);
+    });        
+  }
+ 
+  private eliminarTicket(ticket: Ticket): void {
     this.eliminandoId.set(ticket.id);
  
     this.ticketService.eliminarTicket(ticket.id).subscribe({
@@ -87,6 +113,18 @@ export class Tickets implements OnInit {
         console.error('Error al intentar eliminar el ticket:', error);
         this.eliminandoId.set(null);
       }
-    });    
+    });
   }
+  
+  mostrarInformacion(): void {
+  this.dialog.open(InfoDialog, {
+    width: '430px',
+    maxWidth: '95vw',
+    data: {
+      titulo: 'Información',
+      mensaje: 'Desde esta sección puedes consultar, crear, editar y eliminar los tickets registrados en el sistema.'
+    }
+  });
+}
+
 }

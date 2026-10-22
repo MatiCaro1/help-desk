@@ -25,12 +25,16 @@
 
       <ng-container matColumnDef="estado">
         <th mat-header-cell *matHeaderCellDef>Estado</th>
-        <td mat-cell *matCellDef="let ticket">{{ ticket.estado }}</td>
+        <td mat-cell *matCellDef="let ticket">
+          <app-estado-ticket [estado]="ticket.estado" />
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="prioridad">
         <th mat-header-cell *matHeaderCellDef>Prioridad</th>
-        <td mat-cell *matCellDef="let ticket">{{ ticket.prioridad }}</td>
+        <td mat-cell *matCellDef="let ticket">
+        <app-prioridad-ticket [prioridad]="ticket.prioridad" />
+      </td>
       </ng-container>
 
       <ng-container matColumnDef="fechaCreacion">
@@ -40,22 +44,14 @@
 
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
+
         <td mat-cell *matCellDef="let ticket">
+          
           <div class="acciones-tabla">
-            <!-- Botón para ir al formulario de edición del ticket -->
-            <a mat-icon-button [routerLink]="['/tickets/editar', ticket.id]" aria-label="Editar ticket">
-              <mat-icon>edit</mat-icon>
-            </a>
+            <app-acciones-ticket [ticket]="ticket" [eliminando]="eliminandoId() === ticket.id" (eliminar)="eliminar($event)"></app-acciones-ticket>
 
             <!-- Botón para eliminar el ticket (se desactiva mientras se está borrando) -->
-            <button
-              mat-icon-button
-              (click)="eliminar(ticket)"
-              [disabled]="eliminandoId() === ticket.id"
-              aria-label="Eliminar ticket"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
+            
           </div>
         </td>
       </ng-container>
@@ -73,5 +69,15 @@
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
     ></mat-paginator>
+
+    <button
+      mat-stroked-button
+      type="button"
+      (click)="mostrarInformacion()">
+
+      <mat-icon>info</mat-icon>
+      Información
+    </button>
+
   }
 </section>

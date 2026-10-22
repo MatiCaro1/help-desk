@@ -1,22 +1,21 @@
-import { Routes } from "@angular/router";
-import { Dashboard } from "./pages/dashboard/dashboard";
-import { Kanban } from "./pages/kanban/kanban";
-import { Tickets } from "./pages/tickets/tickets";
-import { Reportes } from "./pages/reportes/reportes";
-import { Usuarios } from "./pages/usuarios/usuarios";
-import { AcercaDe } from "./pages/acerca-de/acerca-de";
-import { NotFound } from "./pages/not-found/not-found"
-import { TicketForm } from "./pages/ticket-form/ticket-form";
-
+import { Routes } from '@angular/router';
+import { Dashboard } from './pages/dashboard/dashboard';
+import { Tickets } from './pages/tickets/tickets';
+import { TicketForm } from './pages/ticket-form/ticket-form';
+import { TicketDetalle } from './pages/ticket-detalle/ticket-detalle';
+import { Kanban } from './pages/kanban/kanban';
+import { Reportes } from './pages/reportes/reportes';
+import { Usuarios } from './pages/usuarios/usuarios';
+ 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  },
   {
     path: 'dashboard',
     component: Dashboard
-  },
-  {
-    path: 'kanban',
-    component: Kanban
   },
   {
     path: 'tickets',
@@ -30,18 +29,24 @@ export const routes: Routes = [
     path: 'tickets/editar/:id',
     component: TicketForm
   },
+    {
+    path: 'usuarios',
+    component: Usuarios
+  },
+  {
+    path: 'tickets/:id',
+    component: TicketDetalle
+  },
+  {
+    path: 'kanban',
+    component: Kanban
+  },
   {
     path: 'reportes',
     component: Reportes
   },
   {
-    path: 'usuarios',
-    component: Usuarios
-  },
-  {
-    path: 'acerca-de',
-    component: AcercaDe,
-  },
-  { path: '**', 
-    component: NotFound },
+    path: '**',
+    component: Dashboard
+  }
 ];
