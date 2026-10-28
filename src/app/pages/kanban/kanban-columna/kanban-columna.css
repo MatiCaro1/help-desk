@@ -1,0 +1,44 @@
+/* Columna con fondo suave
+   (quita la sombra y el ancho máximo que base.css le da a todos los <section>) */
+.columna {
+  max-width: none;
+  padding: 16px;
+  background: var(--color-menu);
+  border-radius: var(--radio);
+  box-shadow: none;
+}
+
+/* Título a la izquierda, cantidad de tickets a la derecha */
+.columna-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.columna-encabezado h2 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-texto);
+}
+
+.cantidad {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: var(--color-panel);
+  color: var(--color-texto-suave);
+}
+
+/* Tarjetas una debajo de otra */
+.columna-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mensaje-vacio {
+  margin: 0;
+  text-align: center;
+}

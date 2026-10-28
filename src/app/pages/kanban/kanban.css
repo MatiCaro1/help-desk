@@ -1,0 +1,12 @@
+/* El tablero ocupa más ancho que las demás páginas */
+.kanban {
+  max-width: 1200px;
+}
+
+/* Tres columnas del mismo ancho, una al lado de la otra */
+.tablero {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+}

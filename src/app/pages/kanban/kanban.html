@@ -1,9 +1,15 @@
-<section>
+<section class="kanban">
     <h1>Kanban</h1>
 
-    <p>
-        Bienvenido
-    </p>
-
-    <p>Primer Avance del proyecto</p>
+    @if (cargando()) {
+        <p>Cargando tickets...</p>
+    } @else if (error()) {
+        <p>Ocurrió un error al cargar los tickets.</p>
+    } @else {
+        <div class="tablero">
+            <app-kanban-columna titulo="Abierto" estado="Abierto" [tickets]="ticketsPorEstado('Abierto')" />
+            <app-kanban-columna titulo="En proceso" estado="En proceso" [tickets]="ticketsPorEstado('En proceso')" />
+            <app-kanban-columna titulo="Cerrado" estado="Cerrado" [tickets]="ticketsPorEstado('Cerrado')" />
+        </div>
+    }
 </section>
