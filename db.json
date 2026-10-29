@@ -3,34 +3,34 @@
     {
       "asunto": "Sin acceso a carpeta compartida OJITO",
       "descripcion": "No tengo permisos para abrir la carpeta 'Finanzas' en el servidor.",
-      "estado": "Cerrado",
-      "prioridad": "Alta",
+      "estado": "Abierto",
+      "prioridad": "Media",
       "fechaCreacion": "2026-09-28",
       "id": "5"
     },
     {
-      "id": "6",
       "asunto": "Pantalla parpadea",
       "descripcion": "El monitor externo parpadea cada cierto tiempo.",
-      "estado": "Abierto",
+      "estado": "En proceso",
       "prioridad": "Baja",
-      "fechaCreacion": "2026-09-30"
+      "fechaCreacion": "2026-09-30",
+      "id": "6"
     },
     {
-      "id": "8",
       "asunto": "Pantalla parpadea",
       "descripcion": "El monitor externo parpadea cada cierto tiempo.",
-      "estado": "Abierto",
+      "estado": "En proceso",
       "prioridad": "Baja",
-      "fechaCreacion": "2026-10-05"
+      "fechaCreacion": "2026-10-05",
+      "id": "8"
     },
     {
-      "id": "9",
       "asunto": "Pantalla parpadea",
       "descripcion": "El monitor externo parpadea cada cierto tiempo.",
-      "estado": "Abierto",
+      "estado": "En proceso",
       "prioridad": "Baja",
-      "fechaCreacion": "2026-10-05"
+      "fechaCreacion": "2026-10-05",
+      "id": "9"
     },
     {
       "asunto": "dadasdasasdasd",
@@ -44,14 +44,14 @@
       "asunto": "Prueba de ingreso de ticket",
       "descripcion": "prueba de un ticket nuevo, ojala no llevan más ticket en la vida",
       "estado": "Abierto",
-      "prioridad": "Media",
+      "prioridad": "Alta",
       "fechaCreacion": "2026-10-08",
       "id": "GzMF4XPr3XM"
     },
     {
       "asunto": "Ejemplo de ticket",
       "descripcion": "Ojala no lleguen mas ticket en la vida por Dios! 1 a la semana ",
-      "estado": "En proceso",
+      "estado": "Cerrado",
       "prioridad": "Media",
       "fechaCreacion": "2026-10-08",
       "id": "Z8jYea6W0vw"
@@ -59,7 +59,7 @@
     {
       "asunto": "Solicitud de instalación de Office Testing",
       "descripcion": "Necesito Microsoft Office instalado en mi nuevo notebook. Testing",
-      "estado": "Cerrado",
+      "estado": "Abierto",
       "prioridad": "Baja",
       "fechaCreacion": "2026-10-15",
       "id": "fzZF14nC4Rg"
@@ -67,7 +67,7 @@
     {
       "asunto": "Solicitud de instalación de Office ",
       "descripcion": "Necesito Microsoft Office instalado en mi nuevo notebook.",
-      "estado": "Cerrado",
+      "estado": "Abierto",
       "prioridad": "Baja",
       "fechaCreacion": "2026-10-15",
       "id": "6MPj6254Ud4"
@@ -75,7 +75,7 @@
     {
       "asunto": "Pantalla parpadea no quiero ver mas ticket en mi vida",
       "descripcion": "El monitor externo parpadea cada cierto tiempo.",
-      "estado": "Cerrado",
+      "estado": "En proceso",
       "prioridad": "Alta",
       "fechaCreacion": "2026-10-15",
       "id": "tLYr4Tla1u0"
@@ -83,7 +83,7 @@
     {
       "asunto": "Ejemplo de ticket",
       "descripcion": "Ojala no lleguen mas ticket en la vida por Dios! 1 a la semana  test",
-      "estado": "Abierto",
+      "estado": "En proceso",
       "prioridad": "Media",
       "fechaCreacion": "2026-10-15",
       "id": "7gZi6o72ecU"
@@ -91,7 +91,7 @@
     {
       "asunto": "Ejemplo de ticket - test",
       "descripcion": "Ojala no lleguen mas ticket en la vida por Dios! 1 a la semana  test",
-      "estado": "Abierto",
+      "estado": "En proceso",
       "prioridad": "Media",
       "fechaCreacion": "2026-10-15",
       "id": "RmQPV5DCryM"
@@ -107,7 +107,7 @@
     {
       "asunto": "testasdasdasd",
       "descripcion": "testasdasdasdasdasd",
-      "estado": "En proceso",
+      "estado": "Abierto",
       "prioridad": "Alta",
       "fechaCreacion": "2026-10-22",
       "id": "5e3Oh-N5NCQ"

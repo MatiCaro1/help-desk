@@ -3,13 +3,13 @@
 
     @if (cargando()) {
         <p>Cargando tickets...</p>
-    } @else if (error()) {
+    } @else if (errorCarga()) {
         <p>Ocurrió un error al cargar los tickets.</p>
     } @else {
-        <div class="tablero">
-            <app-kanban-columna titulo="Abierto" estado="Abierto" [tickets]="ticketsPorEstado('Abierto')" />
-            <app-kanban-columna titulo="En proceso" estado="En proceso" [tickets]="ticketsPorEstado('En proceso')" />
-            <app-kanban-columna titulo="Cerrado" estado="Cerrado" [tickets]="ticketsPorEstado('Cerrado')" />
+        <div class="tablero" cdkDropListGroup>
+            <app-kanban-columna titulo="Abierto" estado="Abierto" [tickets]="ticketsPorEstado('Abierto')" (cambiarEstado)="actualizarEstado($event.ticket, $event.nuevoEstado)" />
+            <app-kanban-columna titulo="En proceso" estado="En proceso" [tickets]="ticketsPorEstado('En proceso')" (cambiarEstado)="actualizarEstado($event.ticket, $event.nuevoEstado)" />
+            <app-kanban-columna titulo="Cerrado" estado="Cerrado" [tickets]="ticketsPorEstado('Cerrado')" (cambiarEstado)="actualizarEstado($event.ticket, $event.nuevoEstado)" />
         </div>
     }
 </section>

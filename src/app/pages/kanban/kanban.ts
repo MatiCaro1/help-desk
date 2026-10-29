@@ -2,9 +2,10 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { Ticket } from '../../models/ticket';
 import { TicketService } from '../../services/tickets';
 import { KanbanColumna } from './kanban-columna/kanban-columna';
+import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 
 @Component({
-  imports: [KanbanColumna],
+  imports: [KanbanColumna, CdkDropListGroup],
   selector: 'app-kanban',
   styleUrl: './kanban.css',
   templateUrl: './kanban.html',
@@ -15,7 +16,9 @@ export class Kanban implements OnInit {
 
   tickets = signal<Ticket[]>([]);
   cargando = signal(true);
-  error = signal(false);
+  errorCarga = signal(false);
+  actualizandoID = signal<number | null>(null);
+  mensajeError = signal('');
 
   ngOnInit(): void {
     this.cargarTickets();
@@ -23,7 +26,7 @@ export class Kanban implements OnInit {
 
   cargarTickets(): void {
     this.cargando.set(true);
-    this.error.set(false);
+    this.errorCarga.set(false);
 
     this.ticketService.obtenerTickets().subscribe({
       next: (tickets) => {
@@ -33,7 +36,7 @@ export class Kanban implements OnInit {
 
       error: (error) => {
         console.error('Error al cargar tickets:', error);
-        this.error.set(true);
+        this.errorCarga.set(true);
         this.cargando.set(false);
       }
     });
@@ -42,5 +45,37 @@ export class Kanban implements OnInit {
   // Devuelve solo los tickets de un estado (para cada columna)
   ticketsPorEstado(estado: Ticket['estado']): Ticket[] {
     return this.tickets().filter(ticket => ticket.estado === estado);
+  }
+
+  actualizarEstado(ticket: Ticket, nuevoEstado: Ticket['estado']):
+  void{
+
+    if (ticket.estado === nuevoEstado || this.actualizandoID() === ticket.id) {
+      return;
+    }
+
+    this.actualizandoID.set(ticket.id);
+    this.mensajeError.set('');
+
+    const datosActualizados: Omit<Ticket, 'id'> = {
+      asunto: ticket.asunto,
+      descripcion: ticket.descripcion,
+      estado: nuevoEstado,
+      prioridad: ticket.prioridad,
+      fechaCreacion: ticket.fechaCreacion
+    };
+
+    this.ticketService.actualizarTicket(String(ticket.id), datosActualizados).subscribe({
+      next: (ticketGuardado) => {
+        this.tickets.update(lista => lista.map(actual => actual.id === ticketGuardado.id ? ticketGuardado : actual));
+        this.actualizandoID.set(null);
+      },
+
+      error: (error) => {
+        console.error('Error al actualizar estado:', error);
+        this.mensajeError.set('No se pudo cambiar el estado del ticket.');
+        this.actualizandoID.set(null);
+      }
+    });
   }
 }

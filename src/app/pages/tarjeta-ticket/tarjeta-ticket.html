@@ -17,4 +17,17 @@
     <div class="ticket-fecha">
         Creado: {{ ticket().fechaCreacion | date:'dd-MM-yyyy' }}
     </div>
+
+    <label class="estado-label" [for]="'estado-' + ticket().id">Cambiar estado</label>
+
+    <select class="estado-select" [id]="'estado-' + ticket().id" [ngModel] = "ticket().estado"
+    (ngModelChange)="seleccionEstado($event)">
+        @for (estado of estados; track estado){
+            <option [ngValue]="estado">{{ estado }}</option>
+        }
+    
+
+
+    </select>
+
 </mat-card>

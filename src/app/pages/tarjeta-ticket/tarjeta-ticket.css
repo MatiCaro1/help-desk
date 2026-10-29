@@ -47,3 +47,25 @@ h3 {
   font-size: 0.8rem;
   color: var(--color-texto-suave);
 }
+
+/* Texto "Cambiar estado" */
+.estado-label {
+  display: block;
+  margin: 14px 0 6px;
+  color: gray;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Lista para elegir el estado */
+.estado-select {
+  width: 100%;
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid rgb(17, 109, 139);
+  border-radius: 8px;
+  background: white;
+  color: black;
+  font: inherit;
+  cursor: pointer;
+}

@@ -6,9 +6,9 @@
         </span>
     </header>
 
-    <div class="columna-contenido">
+    <div class="columna-contenido" cdkDropList [cdkDropListData]="tickets()" (cdkDropListDropped)="soltarTicket($event)">
         @for (ticket of tickets(); track ticket.id) {
-            <app-tarjeta-ticket [ticket]="ticket" />
+            <app-tarjeta-ticket cdkDrag [cdkDragData]="ticket" [ticket]="ticket" (cambiarEstado)="cambiarEstado.emit($event)"/>
         } @empty {
             <p class="mensaje-vacio">No hay tickets registrados</p>
         }

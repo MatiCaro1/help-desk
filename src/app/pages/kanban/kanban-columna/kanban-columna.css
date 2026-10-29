@@ -38,6 +38,11 @@
   gap: 12px;
 }
 
+/* Espacio vacío que queda donde estaba la tarjeta mientras se arrastra */
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
 .mensaje-vacio {
   margin: 0;
   text-align: center;
