@@ -12,6 +12,62 @@
   } @else if (error()) {
     <p>Ocurrió un error al cargar los tickets.</p>
   } @else {
+    <div class="filtros">
+      <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="filtros.texto"
+          (ngModelChange)="aplicarFiltros()"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Estado</mat-label>
+        <mat-select [(ngModel)]="filtros.estado" (ngModelChange)="aplicarFiltros()">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="Abierto">Abierto</mat-option>
+          <mat-option value="En proceso">En proceso</mat-option>
+          <mat-option value="Cerrado">Cerrado</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Prioridad</mat-label>
+        <mat-select [(ngModel)]="filtros.prioridad" (ngModelChange)="aplicarFiltros()">
+          <mat-option value="">Todas</mat-option>
+          <mat-option value="Baja">Baja</mat-option>
+          <mat-option value="Media">Media</mat-option>
+          <mat-option value="Alta">Alta</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Desde</mat-label>
+        <input
+          matInput
+          type="date"
+          [(ngModel)]="filtros.fechaDesde"
+          (ngModelChange)="aplicarFiltros()"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Hasta</mat-label>
+        <input
+          matInput
+          type="date"
+          [(ngModel)]="filtros.fechaHasta"
+          (ngModelChange)="aplicarFiltros()"
+        />
+      </mat-form-field>
+
+      <button mat-stroked-button type="button" (click)="limpiarFiltros()">
+        Limpiar
+      </button>
+    </div>
+
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -60,7 +116,7 @@
       <tr mat-row *matRowDef="let fila; columns: columnas"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" [attr.colspan]="columnas.length">No hay tickets registrados.</td>
+        <td class="mat-cell" [attr.colspan]="columnas.length">No se encontraron tickets.</td>
       </tr>
     </table>
 

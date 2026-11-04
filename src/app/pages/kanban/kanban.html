@@ -6,6 +6,38 @@
     } @else if (errorCarga()) {
         <p>Ocurrió un error al cargar los tickets.</p>
     } @else {
+
+        <div class="filtros">
+            <mat-form-field>
+                <mat-label>Buscar</mat-label>
+                <input matInput type="text" [(ngModel)]="filtroTexto" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Prioridad</mat-label>
+                <mat-select [(ngModel)]="filtroPrioridad">
+                <mat-option value="">Todas</mat-option>
+                <mat-option value="Baja">Baja</mat-option>
+                <mat-option value="Media">Media</mat-option>
+                <mat-option value="Alta">Alta</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Desde</mat-label>
+                <input matInput type="date" [(ngModel)]="filtroFechaDesde" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Hasta</mat-label>
+                <input matInput type="date" [(ngModel)]="filtroFechaHasta" />
+            </mat-form-field>
+
+            <button mat-stroked-button type="button" (click)="limpiarFiltros()">
+                Limpiar
+            </button>
+            </div>
+
         <div class="tablero" cdkDropListGroup>
             <app-kanban-columna titulo="Abierto" estado="Abierto" [tickets]="ticketsPorEstado('Abierto')" (cambiarEstado)="actualizarEstado($event.ticket, $event.nuevoEstado)" />
             <app-kanban-columna titulo="En proceso" estado="En proceso" [tickets]="ticketsPorEstado('En proceso')" (cambiarEstado)="actualizarEstado($event.ticket, $event.nuevoEstado)" />
