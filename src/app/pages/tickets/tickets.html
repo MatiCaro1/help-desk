@@ -7,11 +7,10 @@
       </a>
     </div>
 
-  @if (cargando()) {
+  @if (cargaInicial()) {
     <p>Cargando tickets...</p>
-  } @else if (error()) {
-    <p>Ocurrió un error al cargar los tickets.</p>
   } @else {
+    <!-- Los filtros siguen visibles mientras se consulta, para no perder lo que se escribe. -->
     <div class="filtros">
       <mat-form-field>
         <mat-label>Buscar</mat-label>
@@ -19,7 +18,7 @@
           matInput
           type="text"
           [(ngModel)]="filtros.texto"
-          (ngModelChange)="aplicarFiltros()"
+          (ngModelChange)="buscarTexto()"
         />
       </mat-form-field>
 
@@ -63,12 +62,25 @@
         />
       </mat-form-field>
 
-      <button mat-stroked-button type="button" (click)="limpiarFiltros()">
+      <button mat-stroked-button type="button" [disabled]="!hayFiltros" (click)="limpiarFiltros()">
         Limpiar
       </button>
     </div>
 
-    <table mat-table [dataSource]="dataSource">
+    @if (error()) {
+      <p class="aviso-error" role="alert">
+        Ocurrió un error al cargar los tickets.
+        <button mat-button type="button" (click)="cargarTickets()">Reintentar</button>
+      </p>
+    }
+
+    <div class="barra-carga">
+      @if (cargando()) {
+        <mat-progress-bar mode="indeterminate" aria-label="Cargando tickets" />
+      }
+    </div>
+
+    <table mat-table [dataSource]="tickets()" [class.consultando]="cargando()">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
         <td mat-cell *matCellDef="let ticket">{{ ticket.id }}</td>
@@ -116,13 +128,20 @@
       <tr mat-row *matRowDef="let fila; columns: columnas"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" [attr.colspan]="columnas.length">No se encontraron tickets.</td>
+        <td class="mat-cell" [attr.colspan]="columnas.length">
+          {{ hayFiltros ? 'No hay tickets que coincidan con los filtros.' : 'No se encontraron tickets.' }}
+        </td>
       </tr>
     </table>
 
+    <!-- Paginación en el servidor: el paginador solo informa la página pedida y el total. -->
     <mat-paginator
-      [pageSize]="5"
-      [pageSizeOptions]="[5, 10, 20]"
+      [length]="total()"
+      [pageIndex]="pagina()"
+      [pageSize]="tamanoPagina()"
+      [pageSizeOptions]="opcionesTamano"
+      [disabled]="cargando()"
+      (page)="cambiarPagina($event)"
       showFirstLastButtons
     ></mat-paginator>
 
