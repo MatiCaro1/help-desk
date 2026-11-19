@@ -12,7 +12,13 @@ import { PrioridadTicket } from '../../shared/prioridad-ticket/prioridad-ticket'
 import { AccionesTicket } from '../../shared/acciones-ticket/acciones-ticket';
 import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
 import { InfoDialog } from '../../shared/info-dialog/info-dialog';
- 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+
+
 @Component({
   selector: 'app-tickets',
   imports: [
@@ -24,6 +30,11 @@ import { InfoDialog } from '../../shared/info-dialog/info-dialog';
     EstadoTicket,
     PrioridadTicket,
     AccionesTicket,
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    FormsModule
 ],
   templateUrl: './tickets.html',
   styleUrl: './tickets.css'
@@ -47,7 +58,42 @@ export class Tickets implements OnInit {
   cargando = signal(true);
   error = signal(false);
   eliminandoId = signal<number | null>(null);
- 
+
+  filtros = {
+    texto: '',
+    estado: '',
+    prioridad: '',
+    fechaDesde: '',
+    fechaHasta:'',
+  };
+
+  constructor() {
+    this.dataSource.filterPredicate = (
+      ticket: Ticket,
+      filtroJson: string
+    ): boolean => {
+      const criterios = JSON.parse(filtroJson) as typeof this.filtros;
+      const texto = criterios.texto.trim().toLocaleLowerCase();
+
+      const coincideTexto = texto === '' || [
+        ticket.id,
+        ticket.asunto,
+        ticket.descripcion,
+        ticket.estado,
+        ticket.prioridad
+      ].some(valor => String(valor).toLocaleLowerCase().includes(texto));
+
+      const coincideEstado = criterios.estado === '' || ticket.estado === criterios.estado;
+      const coincidePrioridad = criterios.prioridad === '' || ticket.prioridad === criterios.prioridad;
+
+      const fechaTicket = ticket.fechaCreacion.slice(0, 10);
+      const coincideFechaDesde = criterios.fechaDesde === '' || fechaTicket >= criterios.fechaDesde;
+      const coincideFechaHasta = criterios.fechaHasta === '' || fechaTicket <= criterios.fechaHasta;
+
+      return coincideTexto && coincideEstado && coincidePrioridad && coincideFechaDesde && coincideFechaHasta;
+    };
+  }
+
   @ViewChild(MatPaginator)
   set paginator(paginator: MatPaginator) {
     if (paginator) {
@@ -57,6 +103,26 @@ export class Tickets implements OnInit {
  
   ngOnInit(): void {
     this.cargarTickets();
+  }
+
+  aplicarFiltros(): void {
+    this.dataSource.filter = JSON.stringify(this.filtros);
+    this.dataSource.paginator?.firstPage();
+  }
+
+  limpiarFiltros(): void {
+    this.filtros = {
+      texto: '',
+      estado: '',
+      prioridad: '',
+      fechaDesde: '',
+      fechaHasta: '',
+    };
+    this.aplicarFiltros();
+  }
+
+  get sinResultados(): boolean{
+    return this.dataSource.filteredData.length === 0;
   }
  
   cargarTickets(): void {
