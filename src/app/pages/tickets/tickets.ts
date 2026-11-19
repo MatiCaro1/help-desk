@@ -173,7 +173,8 @@ export class Tickets implements OnInit {
     this.ticketService.eliminarTicket(ticket.id).subscribe({
       next: () => {
         this.eliminandoId.set(null);
-        this.cargarTickets();
+        // Se quita de la lista local en vez de volver a consultar toda la lista a la API.
+        this.dataSource.data = this.dataSource.data.filter(actual => actual.id !== ticket.id);
       },
       error: (error) => {
         console.error('Error al intentar eliminar el ticket:', error);
