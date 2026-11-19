@@ -14,3 +14,20 @@
   gap: 12px;
   align-items: baseline;
 }
+
+/* Reserva el alto de la barra para que la tabla no salte al aparecer */
+.barra-carga {
+  height: 4px;
+}
+
+table.consultando {
+  opacity: 0.6;
+  transition: opacity 150ms ease;
+}
+
+.aviso-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #b91c1c;
+}

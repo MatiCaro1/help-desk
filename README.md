@@ -15,7 +15,8 @@ Esta entrega es un **avance funcional** que se ejecuta completo **en local**, si
   - El menú muestra solo las secciones permitidas para el rol.
 - **Lazy loading:** cada página se descarga solo cuando se visita.
 - **Dashboard de indicadores:** tarjetas por estado, seguimiento operacional (pendientes, alta prioridad, % cerrado), filtro por prioridad y gráficos de barras y dona hechos con SVG, sin librerías externas.
-- **Caché de tickets:** Dashboard, Tickets y Kanban comparten una sola consulta a la API. La lista se vuelve a pedir solo al crear, editar o eliminar un ticket, o al pulsar "Actualizar datos" en el Dashboard. Esto reduce las esperas cuando la API es lenta.
+- **Paginación en el servidor (Tickets):** la tabla pide a la API solo la página visible y el total, con los filtros (texto, estado, prioridad y fechas) aplicados en el servidor. La búsqueda espera 300 ms después de la última tecla y descarta respuestas viejas si llega una consulta nueva. En modo local usa `_page`, `_per_page` y `_where` de json-server; en modo remoto, `GET /tickets/paginados` de la API del curso.
+- **Caché de tickets:** Dashboard y Kanban comparten una sola consulta a la API. La lista se vuelve a pedir solo al crear, editar o eliminar un ticket, o al pulsar "Actualizar datos" en el Dashboard. Esto reduce las esperas cuando la API es lenta.
 
 El código para conectarse a la **API real del curso** (Django) ya está escrito y compila. Para usarlo se cambia un interruptor; ver [Cambiar a la API del curso](#cambiar-a-la-api-del-curso).
 
@@ -95,7 +96,7 @@ src/app/
 ├── pages/                     # login, dashboard, tickets, kanban, reportes, usuarios, ...
 ├── services/
 │   ├── sesion.ts              # Login (local o remoto), sesión y roles
-│   ├── tickets.ts             # CRUD de tickets y caché de la lista
+│   ├── tickets.ts             # CRUD de tickets, caché de la lista y consulta paginada
 │   └── usuario.ts             # CRUD de usuarios
 └── shared/                    # Componentes reutilizables (diálogos, estado, prioridad,
                                #   tarjeta-indicador, grafico-tickets, ...)
