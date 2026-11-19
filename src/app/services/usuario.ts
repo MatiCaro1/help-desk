@@ -1,7 +1,8 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario';
+import { API_BASE_URL } from '../config/api';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Usuario } from '../models/usuario';
 })
 export class UsuarioService {
 
-    private apiUrl = 'http://localhost:3000/usuarios';
+    private apiUrl = `${API_BASE_URL}/usuarios`;
 
     constructor(private http:HttpClient) {}
 
@@ -33,7 +34,7 @@ export class UsuarioService {
     }
 
     // Elimina un Usuario según su id (DELETE)
-    eliminarUsuario(id:number):Observable<void>{
+    eliminarUsuario(id: string):Observable<void>{
         return this.http.delete<void>(`${this.apiUrl}/${id}`)
     }
 

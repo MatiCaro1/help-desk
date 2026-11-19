@@ -26,3 +26,25 @@
 .content {
   padding: 1.5rem;
 }
+
+.espacio {
+  flex: 1;
+}
+
+.modo {
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: #fbbf24;
+  color: #1e3a5f;
+}
+
+.perfil {
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.toolbar button {
+  color: #ffffff;
+}
