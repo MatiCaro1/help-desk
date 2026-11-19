@@ -1,1 +1,72 @@
-<p>usuario-form works!</p>
+<section class="contenedor">
+  <div class="encabezado">
+    <mat-icon>{{ modoEdicion() ? 'manage_accounts' : 'person_add' }}</mat-icon>
+    <h1>{{ modoEdicion() ? 'Editar usuario' : 'Nuevo usuario' }}</h1>
+  </div>
+
+  @if (cargando()) {
+    <p>Cargando usuario...</p>
+  } @else if (errorCarga()) {
+    <p class="error" role="alert">No fue posible cargar el usuario.</p>
+    <div class="acciones">
+      <a mat-stroked-button routerLink="/usuarios">
+        <mat-icon>arrow_back</mat-icon>
+        Volver
+      </a>
+    </div>
+  } @else {
+    <form [formGroup]="usuarioForm" (ngSubmit)="guardar()" class="formulario">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" placeholder="Ej: Fernanda Castillo" autocomplete="name" />
+        @if (usuarioForm.controls.nombre.hasError('required')) {
+          <mat-error>El nombre es obligatorio.</mat-error>
+        } @else if (usuarioForm.controls.nombre.hasError('minlength')) {
+          <mat-error>Debe tener al menos 3 caracteres.</mat-error>
+        } @else if (usuarioForm.controls.nombre.hasError('maxlength')) {
+          <mat-error>Debe tener como máximo 80 caracteres.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="nombre@helpdesk.cl"
+          autocomplete="email"
+        />
+        @if (usuarioForm.controls.email.hasError('required')) {
+          <mat-error>El email es obligatorio.</mat-error>
+        } @else if (usuarioForm.controls.email.hasError('email')) {
+          <mat-error>Ingresa un email válido.</mat-error>
+        } @else if (usuarioForm.controls.email.hasError('maxlength')) {
+          <mat-error>Debe tener como máximo 120 caracteres.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="rol">
+          @for (rol of roles; track rol) {
+            <mat-option [value]="rol">{{ rol }}</mat-option>
+          }
+        </mat-select>
+        <mat-hint>Define qué secciones puede ver el usuario.</mat-hint>
+      </mat-form-field>
+
+      @if (errorGuardado()) {
+        <p class="error" role="alert">No fue posible guardar el usuario. Inténtalo nuevamente.</p>
+      }
+
+      <div class="acciones">
+        <a mat-stroked-button routerLink="/usuarios">Cancelar</a>
+        <button mat-flat-button type="submit" [disabled]="guardando()">
+          <mat-icon>save</mat-icon>
+          {{ guardando() ? 'Guardando…' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  }
+</section>

@@ -12,10 +12,15 @@ describe('EstadoTicket', () => {
 
     fixture = TestBed.createComponent(EstadoTicket);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('estado', 'En proceso');
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('muestra el estado recibido', () => {
+    expect((fixture.nativeElement as HTMLElement).textContent).toContain('En proceso');
   });
 });

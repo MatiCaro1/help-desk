@@ -7,10 +7,13 @@ import { Role } from '../../shared/role/role';
 import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { AccionesUsuario } from '../../shared/acciones-usuario/acciones-usuario';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
-  imports: [MatTableModule, MatPaginatorModule, Role, AccionesUsuario ],
+  imports: [MatTableModule, MatPaginatorModule, Role, AccionesUsuario, RouterLink, MatButtonModule, MatIconModule],
   selector: 'app-usuarios',
   styleUrl: './usuarios.css',
   templateUrl: './usuarios.html',
@@ -99,7 +102,8 @@ export class Usuarios implements OnInit {
       this.usuarioService.eliminarUsuario(usuario.id).subscribe({
         next: () => {
           this.eliminandoId.set(null);
-          this.cargarUsuarios();
+          // Se quita de la lista local en vez de volver a consultar toda la lista a la API.
+          this.dataSource.data = this.dataSource.data.filter(actual => actual.id !== usuario.id);
         },
         error: (error) => {
           console.error('Error al intentar eliminar el usuario:', error);

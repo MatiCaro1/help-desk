@@ -12,10 +12,15 @@ describe('PrioridadTicket', () => {
 
     fixture = TestBed.createComponent(PrioridadTicket);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('prioridad', 'Alta');
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('muestra la prioridad recibida', () => {
+    expect((fixture.nativeElement as HTMLElement).textContent).toContain('Alta');
   });
 });
