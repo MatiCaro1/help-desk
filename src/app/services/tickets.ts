@@ -1,8 +1,9 @@
 // Importaciones que necesita este servicio
-import { Inject, Injectable } from '@angular/core'; // Injectable permite que Angular "inyecte" este servicio en otros lugares
+import { Injectable } from '@angular/core'; // Injectable permite que Angular "inyecte" este servicio en otros lugares
 import { HttpClient } from '@angular/common/http'; // HttpClient sirve para hacer peticiones a la API (GET, POST, PUT, DELETE)
 import { Observable } from 'rxjs'; // Observable representa una respuesta que llega más tarde (asíncrona)
 import { Ticket } from '../models/ticket'; // El modelo que define cómo es un ticket
+import { API_BASE_URL } from '../config/api'; // URL base según el interruptor (local o remota)
 
 // Este servicio queda disponible para toda la aplicación
 @Injectable({
@@ -11,7 +12,7 @@ import { Ticket } from '../models/ticket'; // El modelo que define cómo es un t
 export class TicketService {
 
     // Dirección de la API donde están guardados los tickets
-    private apiUrl = 'http://localhost:3000/tickets';
+    private apiUrl = `${API_BASE_URL}/tickets`;
 
     // Angular nos entrega el HttpClient para poder usarlo en los métodos
     constructor(private http:HttpClient) {}
@@ -37,7 +38,7 @@ export class TicketService {
     }
 
     // Elimina un ticket según su id (DELETE)
-    eliminarTicket(id:number):Observable<void>{
+    eliminarTicket(id: string):Observable<void>{
         return this.http.delete<void>(`${this.apiUrl}/${id}`)
     }
 }

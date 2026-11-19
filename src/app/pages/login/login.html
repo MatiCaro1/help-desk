@@ -1,0 +1,66 @@
+<div class="login">
+  <div class="tarjeta">
+    <div class="encabezado">
+      <mat-icon class="logo">support_agent</mat-icon>
+      <h1>Help Desk</h1>
+      <p>Inicia sesión para continuar</p>
+    </div>
+
+    <form (ngSubmit)="entrar()" #formulario="ngForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input matInput name="username" [(ngModel)]="username" required autocomplete="username" />
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          name="password"
+          [type]="verPassword() ? 'text' : 'password'"
+          [(ngModel)]="password"
+          required
+          autocomplete="current-password"
+        />
+        <mat-icon matPrefix>lock</mat-icon>
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="verPassword.set(!verPassword())"
+          [attr.aria-label]="verPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+        >
+          <mat-icon>{{ verPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      @if (mensajeError()) {
+        <p class="error" role="alert">{{ mensajeError() }}</p>
+      }
+
+      <button mat-flat-button type="submit" [disabled]="formulario.invalid || enviando()">
+        {{ enviando() ? 'Ingresando…' : 'Ingresar' }}
+      </button>
+    </form>
+
+    @if (modoLocal) {
+      <div class="demo">
+        <p class="demo-titulo">
+          <mat-icon>science</mat-icon>
+          Modo local: usuarios de prueba
+        </p>
+        <ul>
+          @for (u of usuariosDemo; track u.username) {
+            <li>
+              <button mat-stroked-button type="button" (click)="usarDemo(u.username, u.password)">
+                {{ u.rol }}
+              </button>
+              <span>{{ u.username }} / {{ u.password }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</div>

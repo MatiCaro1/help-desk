@@ -27,7 +27,7 @@ export class Usuarios implements OnInit {
   
   cargando = signal(true);
   error = signal(false);
-  eliminandoId = signal<number | null>(null);
+  eliminandoId = signal<string | null>(null);
 
 
   @ViewChild(MatPaginator)

@@ -34,7 +34,7 @@ export class Kanban implements OnInit {
   tickets = signal<Ticket[]>([]);
   cargando = signal(true);
   errorCarga = signal(false);
-  actualizandoID = signal<number | null>(null);
+  actualizandoID = signal<string | null>(null);
   mensajeError = signal('');
   filtroTexto = signal('');
   filtroPrioridad = signal('');
@@ -120,7 +120,7 @@ limpiarFiltros(): void {
       fechaCreacion: ticket.fechaCreacion
     };
 
-    this.ticketService.actualizarTicket(String(ticket.id), datosActualizados).subscribe({
+    this.ticketService.actualizarTicket(ticket.id, datosActualizados).subscribe({
       next: (ticketGuardado) => {
         this.tickets.update(lista => lista.map(actual => actual.id === ticketGuardado.id ? ticketGuardado : actual));
         this.actualizandoID.set(null);

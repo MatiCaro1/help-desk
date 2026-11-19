@@ -1,48 +1,68 @@
-<mat-sidenav-container class="layout">
-  <mat-sidenav mode="side" opened class="sidebar">
-    <div class="menu-titulo">Menú principal</div>
+@if (sesion.actual(); as perfil) {
+  <mat-sidenav-container class="layout">
+    <mat-sidenav mode="side" opened class="sidebar">
+      <div class="menu-titulo">Menú principal</div>
 
-    <mat-nav-list>
-      <a mat-list-item routerLink="/dashboard" routerLinkActive="activo">
-        <mat-icon matListItemIcon>dashboard</mat-icon>
-        <span matListItemTitle>Dashboard</span>
-      </a>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="activo">
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
 
-      <a mat-list-item routerLink="/tickets" routerLinkActive="activo">
-        <mat-icon matListItemIcon>confirmation_number</mat-icon>
-        <span matListItemTitle>Tickets</span>
-      </a>
+        <a mat-list-item routerLink="/tickets" routerLinkActive="activo">
+          <mat-icon matListItemIcon>confirmation_number</mat-icon>
+          <span matListItemTitle>Tickets</span>
+        </a>
 
-      <a mat-list-item routerLink="/kanban" routerLinkActive="activo">
-        <mat-icon matListItemIcon>view_kanban</mat-icon>
-        <span matListItemTitle>Kanban</span>
-      </a>
+        @if (sesion.tieneAlgunRol(['Soporte', 'Administrador'])) {
+          <a mat-list-item routerLink="/kanban" routerLinkActive="activo">
+            <mat-icon matListItemIcon>view_kanban</mat-icon>
+            <span matListItemTitle>Kanban</span>
+          </a>
+        }
 
-      <a mat-list-item routerLink="/reportes" routerLinkActive="activo">
-        <mat-icon matListItemIcon>bar_chart</mat-icon>
-        <span matListItemTitle>Reportes</span>
-      </a>
+        @if (sesion.tieneAlgunRol(['Administrador'])) {
+          <a mat-list-item routerLink="/reportes" routerLinkActive="activo">
+            <mat-icon matListItemIcon>bar_chart</mat-icon>
+            <span matListItemTitle>Reportes</span>
+          </a>
 
-      <a mat-list-item routerLink="/usuarios" routerLinkActive="activo">
-        <mat-icon matListItemIcon>info</mat-icon>
-        <span matListItemTitle>Usuarios</span>
-      </a>
+          <a mat-list-item routerLink="/usuarios" routerLinkActive="activo">
+            <mat-icon matListItemIcon>group</mat-icon>
+            <span matListItemTitle>Usuarios</span>
+          </a>
+        }
 
-      <a mat-list-item routerLink="/acerca-de" routerLinkActive="activo">
-        <mat-icon matListItemIcon>info</mat-icon>
-        <span matListItemTitle>Acerca de</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
+        <a mat-list-item routerLink="/acerca-de" routerLinkActive="activo">
+          <mat-icon matListItemIcon>info</mat-icon>
+          <span matListItemTitle>Acerca de</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
-    <mat-toolbar class="toolbar">
-      <mat-icon>support_agent</mat-icon>
-      <span>Help Desk</span>
-    </mat-toolbar>
+    <mat-sidenav-content>
+      <mat-toolbar class="toolbar">
+        <mat-icon>support_agent</mat-icon>
+        <span>Help Desk</span>
+        @if (modoLocal) {
+          <span class="modo" title="API local (json-server) y login simulado">Modo local</span>
+        }
 
-    <main class="content">
-      <router-outlet />
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+        <span class="espacio"></span>
+
+        <span class="perfil">{{ perfil.username }} · {{ perfil.rol }}</span>
+        <button mat-button type="button" (click)="cerrarSesion()">
+          <mat-icon>logout</mat-icon>
+          Cerrar sesión
+        </button>
+      </mat-toolbar>
+
+      <main class="content">
+        <router-outlet />
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+} @else {
+  <!-- Sin sesión: solo se muestra la página (login o 404), sin menú. -->
+  <router-outlet />
+}
