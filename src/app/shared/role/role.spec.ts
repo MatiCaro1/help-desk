@@ -12,10 +12,15 @@ describe('Role', () => {
 
     fixture = TestBed.createComponent(Role);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('rol', 'Administrador');
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('aplica la clase del rol', () => {
+    expect((fixture.nativeElement as HTMLElement).querySelector('.rol.administrador')).not.toBeNull();
   });
 });

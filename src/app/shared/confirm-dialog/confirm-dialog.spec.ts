@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDialog } from './confirm-dialog';
 
 describe('ConfirmDialog', () => {
@@ -8,6 +9,10 @@ describe('ConfirmDialog', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ConfirmDialog],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: { titulo: 'Eliminar ticket', mensaje: '¿Está seguro?' } },
+        { provide: MatDialogRef, useValue: { close: () => undefined } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ConfirmDialog);
@@ -17,5 +22,9 @@ describe('ConfirmDialog', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('muestra el título recibido', () => {
+    expect((fixture.nativeElement as HTMLElement).textContent).toContain('Eliminar ticket');
   });
 });

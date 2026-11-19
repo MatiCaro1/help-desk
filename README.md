@@ -23,7 +23,7 @@ El código para conectarse a la **API real del curso** (Django) ya está escrito
 
 ## Cómo ejecutarlo
 
-Requisitos: Node.js 20 o superior y npm.
+Requisitos: Node.js 22.22.3 o superior (o 24.15 o superior) y npm.
 
 1. Instalar dependencias (solo la primera vez):
 
@@ -107,7 +107,11 @@ src/app/
 
 ## Otros comandos
 
-| Comando         | Descripción                              |
-|-----------------|------------------------------------------|
-| `npm run build` | Compila para producción en `dist/`       |
-| `npm test`      | Ejecuta las pruebas unitarias (Vitest)   |
+| Comando | Descripción |
+|---|---|
+| `npm run build` | Compila para producción en `dist/` |
+| `npm test -- --watch=false` | Ejecuta las 49 pruebas unitarias (Vitest) una vez |
+
+## Guía de pruebas y entrega
+
+En [`docs/GUIA_EJECUCION_Y_PRUEBAS.md`](docs/GUIA_EJECUCION_Y_PRUEBAS.md) hay una guía paso a paso para ejecutar el proyecto, un plan de pruebas de usuario con casos para marcar y un checklist de entrega.
