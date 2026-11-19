@@ -60,6 +60,21 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/usuarios/usuarios').then(m => m.Usuarios),
   },
   {
+    path: 'usuarios/nuevo',
+    canActivate: [requiereRoles('Administrador')],
+    loadComponent: () => import('./pages/usuario-form/usuario-form').then(m => m.UsuarioForm),
+  },
+  {
+    path: 'usuarios/editar/:id',
+    canActivate: [requiereRoles('Administrador')],
+    loadComponent: () => import('./pages/usuario-form/usuario-form').then(m => m.UsuarioForm),
+  },
+  {
+    path: 'usuarios/:id',
+    canActivate: [requiereRoles('Administrador')],
+    loadComponent: () => import('./pages/usuario-detalle/usuario-detalle').then(m => m.UsuarioDetalle),
+  },
+  {
     path: 'acerca-de',
     canActivate: [sesionGuard],
     loadComponent: () => import('./pages/acerca-de/acerca-de').then(m => m.AcercaDe),

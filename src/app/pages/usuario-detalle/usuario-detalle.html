@@ -1,1 +1,43 @@
-<p>usuario-detalle works!</p>
+<section class="contenedor">
+  <div class="encabezado">
+    <mat-icon>person</mat-icon>
+    <h1>Detalle del usuario</h1>
+  </div>
+
+  @if (cargando()) {
+    <p>Cargando usuario...</p>
+  } @else if (error()) {
+    <p class="error" role="alert">No fue posible cargar el usuario.</p>
+    <div class="acciones">
+      <a mat-stroked-button routerLink="/usuarios">
+        <mat-icon>arrow_back</mat-icon>
+        Volver
+      </a>
+    </div>
+  } @else if (usuario(); as u) {
+    <dl class="datos">
+      <dt>ID</dt>
+      <dd>{{ u.id }}</dd>
+
+      <dt>Nombre</dt>
+      <dd>{{ u.nombre }}</dd>
+
+      <dt>Email</dt>
+      <dd><a [href]="'mailto:' + u.email">{{ u.email }}</a></dd>
+
+      <dt>Rol</dt>
+      <dd><app-role [rol]="u.rol" /></dd>
+    </dl>
+
+    <div class="acciones">
+      <a mat-stroked-button routerLink="/usuarios">
+        <mat-icon>arrow_back</mat-icon>
+        Volver
+      </a>
+      <a mat-flat-button [routerLink]="['/usuarios/editar', u.id]">
+        <mat-icon>edit</mat-icon>
+        Editar
+      </a>
+    </div>
+  }
+</section>

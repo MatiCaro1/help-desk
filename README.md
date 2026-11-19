@@ -16,6 +16,7 @@ Esta entrega es un **avance funcional** que se ejecuta completo **en local**, si
 - **Lazy loading:** cada página se descarga solo cuando se visita.
 - **Dashboard de indicadores:** tarjetas por estado, seguimiento operacional (pendientes, alta prioridad, % cerrado), filtro por prioridad y gráficos de barras y dona hechos con SVG, sin librerías externas.
 - **Paginación en el servidor (Tickets):** la tabla pide a la API solo la página visible y el total, con los filtros (texto, estado, prioridad y fechas) aplicados en el servidor. La búsqueda espera 300 ms después de la última tecla y descarta respuestas viejas si llega una consulta nueva. En modo local usa `_page`, `_per_page` y `_where` de json-server; en modo remoto, `GET /tickets/paginados` de la API del curso.
+- **Gestión de usuarios (solo Administrador):** lista, detalle (`/usuarios/:id`), creación (`/usuarios/nuevo`) y edición (`/usuarios/editar/:id`) con validaciones de nombre, email y rol.
 - **Caché de tickets:** Dashboard y Kanban comparten una sola consulta a la API. La lista se vuelve a pedir solo al crear, editar o eliminar un ticket, o al pulsar "Actualizar datos" en el Dashboard. Esto reduce las esperas cuando la API es lenta.
 
 El código para conectarse a la **API real del curso** (Django) ya está escrito y compila. Para usarlo se cambia un interruptor; ver [Cambiar a la API del curso](#cambiar-a-la-api-del-curso).
@@ -63,7 +64,7 @@ En la pantalla de login, los botones de "Modo local" rellenan las credenciales a
 | `/login`                               | Solo sin sesión iniciada   |
 | `/dashboard`, `/tickets/**`, `/acerca-de` | Cualquier sesión iniciada |
 | `/kanban`                              | Soporte y Administrador    |
-| `/reportes`, `/usuarios`               | Administrador              |
+| `/reportes`, `/usuarios/**`            | Administrador              |
 | Cualquier otra ruta                    | Página 404                 |
 
 ## Cambiar a la API del curso
@@ -79,6 +80,8 @@ Con `true`:
 - Los servicios apuntan a la API del curso en lugar de `localhost:3000`.
 - El login llama a `POST {API_BASE_URL}/auth/token` con `{ username, password }` y usa el `token` y el `rol` que responde la API (ver `src/app/services/sesion.ts`, método `iniciarSesionRemota`).
 - Se oculta el recuadro de usuarios de prueba y el indicador "Modo local".
+
+En la API del curso solo está confirmado `GET /usuarios`; crear, editar o eliminar usuarios en modo remoto depende de que la API exponga esos endpoints.
 
 Para que funcione, el túnel de la API del curso tiene que estar activo y se necesitan credenciales válidas entregadas por el profesor.
 

@@ -1,5 +1,11 @@
 <section>
-  <h1>Usuarios</h1>
+  <div class="encabezado">
+    <h1>Usuarios</h1>
+    <a mat-flat-button routerLink="/usuarios/nuevo">
+      <mat-icon>person_add</mat-icon>
+      Nuevo usuario
+    </a>
+  </div>
 
   @if (cargando()) {
     <p>Cargando usuarios...</p>
